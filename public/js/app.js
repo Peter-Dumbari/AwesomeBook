@@ -72,7 +72,6 @@ const generateAddForm = () => {
   input.setAttribute('name', 'title');
   input.setAttribute('id', 'title');
   input.setAttribute('placeholder', 'Write the title');
-  input.setAttribute('value', 'Book 1');
   l1.appendChild(input);
   const l2 = document.createElement('fieldset');
   l2.innerHTML = '<legend><label for="author">Author</label></legend>';
@@ -83,7 +82,6 @@ const generateAddForm = () => {
   input2.setAttribute('name', 'author');
   input2.setAttribute('id', 'author');
   input2.setAttribute('placeholder', 'Write the author');
-  input2.setAttribute('value', 'Author 1');
   l2.appendChild(input2);
   // input file
   const lx = document.createElement('fieldset');
@@ -93,8 +91,6 @@ const generateAddForm = () => {
   inputX.setAttribute('type', 'file');
   inputX.setAttribute('name', 'cover');
   inputX.setAttribute('id', 'cover');
-  inputX.setAttribute('placeholder', 'Write the author');
-  inputX.setAttribute('value', 'Author 1');
   inputX.setAttribute('onchange', 'updloadImage()');
   lx.appendChild(inputX);
   // input submit
