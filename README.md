@@ -107,7 +107,7 @@ To run tests, run the following command:
 
 ### Deployment
 
-This project is deployed at github pages you can find it at: https://github.com/MenendezON/awesome-books.git
+This project is deployed at github pages you can find it at: https://menendezon.github.io/awesome-books/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
