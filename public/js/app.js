@@ -44,8 +44,9 @@ const generateTable = () => {
     const th14 = document.createElement('td');
     th14.textContent = book.created_at;
     const th15 = document.createElement('td');
-    th15.innerHTML = `<a href=""><i class="fa fa-search-plus" aria-hidden="true"></i></a> | <a href="#" onclick="removeBook(${i
-      })"><i class="fa fa-trash-o" aria-hidden="true"></i></a>`;
+    th15.innerHTML = `
+    <a href="#" onclick="popupBook(${i})"><i class="fa fa-search-plus" aria-hidden="true"></i></a> | 
+    <a href="#" onclick="removeBook(${i})"><i class="fa fa-trash-o" aria-hidden="true"></i></a>`;
     tr1.appendChild(th11);
     tr1.appendChild(th12);
     tr1.appendChild(th13);
@@ -182,7 +183,7 @@ const generateCurrentDate = () => {
   currentDate.innerHTML = formatDate();
 };
 
-window.addEventListener("DOMContentLoaded", (event) => {
+window.addEventListener('DOMContentLoaded', (event) => {
   setInterval(generateCurrentDate, 1000);
   changeTitle();
   menuActive(menu, menu[0]);
@@ -194,20 +195,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   generateTable();
 });
 
-const updloadImage = () => {
-  const file = document.getElementById('cover').files[0];
-  const reader = new FileReader();
-  reader.onloadend = () => {
-    console.log(reader.result);
-    
-    return reader.result;
-  };
-  if (file) {
-    reader.readAsDataURL(file);
-  }
-}
-
-const validateForm = () => {
+const validateForm = (coverImg = '') => {
   const title = document.getElementById('title');
   const author = document.getElementById('author');
 
@@ -215,11 +203,9 @@ const validateForm = () => {
     title: title.value,
     author: author.value,
     created_at: formatDate(),
-    cover: updloadImage(),
+    cover: coverImg,
+    description: '',
   };
-
-  console.log(updloadImage());
-  console.log(typeof updloadImage());
 
   const success = books.push(newBook);
   localStorage.setItem('books', JSON.stringify(books));
@@ -232,3 +218,43 @@ const validateForm = () => {
   return false;
 };
 
+const updloadImage = () => {
+  const file = document.getElementById('cover').files[0];
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    validateForm(reader.result);
+  };
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+};
+
+const popupBook = (index) => {
+  const back = document.createElement('div');
+  back.classList.add('fullScreen');
+  const popup = document.createElement('div');
+  popup.classList.add('popup');
+
+  const side0 = document.createElement('div');
+  side0.innerHTML = `<img src="${books[index].cover}" alt="">`;
+  popup.appendChild(side0);
+
+  const side1 = document.createElement('div');
+  side1.innerHTML = `<h2>${books[index].title}</h2><h3><em>by ${books[index].author}</em></h3><p><em>added ${books[index].created_at}</em></p><p>${books[index].description}</p>`;
+  popup.appendChild(side1);
+
+  const link = document.createElement('a');
+  link.innerText = 'See less';
+  link.setAttribute('onclick', 'closeBtn()');
+  link.setAttribute('href', '#');
+  side1.appendChild(link);
+
+  back.appendChild(popup);
+  document.body.appendChild(back);
+  return false;
+};
+
+const closeBtn = () => {
+  document.body.removeChild(document.querySelector('.fullScreen'));
+  return false;
+};
