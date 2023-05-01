@@ -83,17 +83,6 @@ In order to run this project, you need :
 - Some skill in HTML/CSS and js
 - An IDE (optional)
 
-### Run tests
-
-To run tests, run the following command:
-
-```sh
-  npx hint .
-```
-
-```sh
-  npx stylelint "**/*.{css,scss}"
-```
 ### Install
 
 To install the project, run this command :
@@ -106,8 +95,15 @@ To run the project on your computer, execute the following command :
 
 ### Run tests
 
-To run the project, execute the following command :
-**npm test**
+To run tests, run the following command:
+
+```sh
+  npx hint .
+```
+
+```sh
+  npx stylelint "**/*.{css,scss}"
+```
 
 ### Deployment
 
