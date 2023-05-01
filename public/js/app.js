@@ -44,9 +44,9 @@ const generateTable = () => {
     const th14 = document.createElement('td');
     th14.textContent = book.created_at;
     const th15 = document.createElement('td');
-    th15.innerHTML = `<a href=""><i class="fa fa-search-plus" aria-hidden="true"></i></a> | <a href="#" onclick="removeBook(${
-      i
-    })"><i class="fa fa-trash-o" aria-hidden="true"></i></a>`;
+    th15.innerHTML = `
+    <a href="#" onclick="popupBook(${i})"><i class="fa fa-search-plus" aria-hidden="true"></i></a> | 
+    <a href="#" onclick="removeBook(${i})"><i class="fa fa-trash-o" aria-hidden="true"></i></a>`;
     tr1.appendChild(th11);
     tr1.appendChild(th12);
     tr1.appendChild(th13);
@@ -56,6 +56,7 @@ const generateTable = () => {
   });
   contain.appendChild(table);
 };
+
 const generateAddForm = () => {
   const parent = document.createElement('form');
   parent.setAttribute('action', '');
@@ -82,6 +83,18 @@ const generateAddForm = () => {
   input2.setAttribute('id', 'author');
   input2.setAttribute('placeholder', 'Write the author');
   l2.appendChild(input2);
+  // input file
+  const lx = document.createElement('fieldset');
+  lx.innerHTML = '<legend><label for="cover">Cover</label></legend>';
+  parent.appendChild(lx);
+  const inputX = document.createElement('input');
+  inputX.setAttribute('type', 'file');
+  inputX.setAttribute('name', 'cover');
+  inputX.setAttribute('id', 'cover');
+  inputX.setAttribute('placeholder', 'Write the author');
+  inputX.setAttribute('value', 'Author 1');
+  inputX.setAttribute('onchange', 'updloadImage()');
+  lx.appendChild(inputX);
   // input submit
   const input3 = document.createElement('input');
   input3.setAttribute('type', 'submit');
@@ -90,6 +103,7 @@ const generateAddForm = () => {
   contain.innerHTML = '';
   contain.appendChild(parent);
 };
+
 const generateContactForm = () => {
   const parentElement = document.createElement('div');
   parentElement.classList.add('contact');
@@ -167,7 +181,7 @@ const generateCurrentDate = () => {
   currentDate.innerHTML = formatDate();
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', (event) => {
   setInterval(generateCurrentDate, 1000);
   changeTitle();
   menuActive(menu, menu[0]);
@@ -175,10 +189,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('books')) {
     books = JSON.parse(localStorage.getItem('books'));
   }
+
   generateTable();
 });
 
-const validateForm = () => {
+const validateForm = (coverImg = '') => {
   const title = document.getElementById('title');
   const author = document.getElementById('author');
 
@@ -186,6 +201,8 @@ const validateForm = () => {
     title: title.value,
     author: author.value,
     created_at: formatDate(),
+    cover: coverImg,
+    description: '',
   };
 
   const success = books.push(newBook);
@@ -196,5 +213,46 @@ const validateForm = () => {
     generateTable();
     return true;
   }
+  return false;
+};
+
+const updloadImage = () => {
+  const file = document.getElementById('cover').files[0];
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    validateForm(reader.result);
+  };
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+};
+
+const popupBook = (index) => {
+  const back = document.createElement('div');
+  back.classList.add('fullScreen');
+  const popup = document.createElement('div');
+  popup.classList.add('popup');
+
+  const side0 = document.createElement('div');
+  side0.innerHTML = `<img src="${books[index].cover}" alt="">`;
+  popup.appendChild(side0);
+
+  const side1 = document.createElement('div');
+  side1.innerHTML = `<h2>${books[index].title}</h2><h3><em>by ${books[index].author}</em></h3><p><em>added ${books[index].created_at}</em></p><p>${books[index].description}</p>`;
+  popup.appendChild(side1);
+
+  const link = document.createElement('a');
+  link.innerText = 'See less';
+  link.setAttribute('onclick', 'closeBtn()');
+  link.setAttribute('href', '#');
+  side1.appendChild(link);
+
+  back.appendChild(popup);
+  document.body.appendChild(back);
+  return false;
+};
+
+const closeBtn = () => {
+  document.body.removeChild(document.querySelector('.fullScreen'));
   return false;
 };
