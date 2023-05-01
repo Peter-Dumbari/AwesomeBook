@@ -44,9 +44,8 @@ const generateTable = () => {
     const th14 = document.createElement('td');
     th14.textContent = book.created_at;
     const th15 = document.createElement('td');
-    th15.innerHTML = `<a href=""><i class="fa fa-search-plus" aria-hidden="true"></i></a> | <a href="#" onclick="removeBook(${
-      i
-    })"><i class="fa fa-trash-o" aria-hidden="true"></i></a>`;
+    th15.innerHTML = `<a href=""><i class="fa fa-search-plus" aria-hidden="true"></i></a> | <a href="#" onclick="removeBook(${i
+      })"><i class="fa fa-trash-o" aria-hidden="true"></i></a>`;
     tr1.appendChild(th11);
     tr1.appendChild(th12);
     tr1.appendChild(th13);
@@ -56,6 +55,7 @@ const generateTable = () => {
   });
   contain.appendChild(table);
 };
+
 const generateAddForm = () => {
   const parent = document.createElement('form');
   parent.setAttribute('action', '');
@@ -84,6 +84,18 @@ const generateAddForm = () => {
   input2.setAttribute('placeholder', 'Write the author');
   input2.setAttribute('value', 'Author 1');
   l2.appendChild(input2);
+  // input file
+  const lx = document.createElement('fieldset');
+  lx.innerHTML = '<legend><label for="cover">Cover</label></legend>';
+  parent.appendChild(lx);
+  const inputX = document.createElement('input');
+  inputX.setAttribute('type', 'file');
+  inputX.setAttribute('name', 'cover');
+  inputX.setAttribute('id', 'cover');
+  inputX.setAttribute('placeholder', 'Write the author');
+  inputX.setAttribute('value', 'Author 1');
+  inputX.setAttribute('onchange', 'updloadImage()');
+  lx.appendChild(inputX);
   // input submit
   const input3 = document.createElement('input');
   input3.setAttribute('type', 'submit');
@@ -92,6 +104,7 @@ const generateAddForm = () => {
   contain.innerHTML = '';
   contain.appendChild(parent);
 };
+
 const generateContactForm = () => {
   const parentElement = document.createElement('div');
   parentElement.classList.add('contact');
@@ -169,7 +182,7 @@ const generateCurrentDate = () => {
   currentDate.innerHTML = formatDate();
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", (event) => {
   setInterval(generateCurrentDate, 1000);
   changeTitle();
   menuActive(menu, menu[0]);
@@ -177,8 +190,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('books')) {
     books = JSON.parse(localStorage.getItem('books'));
   }
+
   generateTable();
 });
+
+const updloadImage = () => {
+  const file = document.getElementById('cover').files[0];
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    console.log(reader.result);
+    
+    return reader.result;
+  };
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+}
 
 const validateForm = () => {
   const title = document.getElementById('title');
@@ -188,7 +215,11 @@ const validateForm = () => {
     title: title.value,
     author: author.value,
     created_at: formatDate(),
+    cover: updloadImage(),
   };
+
+  console.log(updloadImage());
+  console.log(typeof updloadImage());
 
   const success = books.push(newBook);
   localStorage.setItem('books', JSON.stringify(books));
@@ -200,3 +231,4 @@ const validateForm = () => {
   }
   return false;
 };
+
