@@ -4,8 +4,6 @@
   <img src="./public/images/logo_menendezon.png" alt="logo" width="140"  height="auto" />
   <br/>
 
-  <h3><b>Microverse README Template</b></h3>
-
 </div>
 
 # 📗 Table of Contents
@@ -32,7 +30,7 @@
 
 # 📖 [Awesome Books] <a name="about-project"></a>
 
-**[Awesome Books]** is a online store for storing names, author and description of books
+**Awesome Books** is a online store for storing names, author and description of books
 
 ## 🛠 Built With <a name="built-with"></a>
 
