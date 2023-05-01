@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <img src="murple_logo.png" alt="logo" width="140"  height="auto" />
+  <img src="./public/images/logo_menendezon.png" alt="logo" width="140"  height="auto" />
   <br/>
 
   <h3><b>Microverse README Template</b></h3>
@@ -72,29 +72,16 @@ To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
-In order to run this project you need:
-
-<!--
-Example command:
-
-```sh
- gem install rails
-```
- -->
+In order to run this project, you need :
+- Git to clone it (optional) 
+- A browser to run it
+- Some skill in HTML/CSS and js
+- An IDE (optional)
 
 ### Setup
 
--Create a new GitHub repo.<br>
--Create a new branch according to the GitHub flow rules.<br>
--Add a .gitignore file.<br>
--Add node_modules to gitignore file.<br>
--Set up a linter for HTML and CSS and make sure that any files that are not relevant are ignored by git.<br>
--Add descriptive README file to your project - please use this template but remember to customize it to your project.<br>
--Add 3 files (each one in a separate commit):<br>
--A .html file.<br>
--A .css file..<br>
--A .js file..<br>  
--Clone this repository to your desired folder:
+This project doesn't need something to install, run this command to download the project : 
+git clone git@github.com:MenendezON/awesome-books.git
 
 ### Run tests
 
@@ -107,6 +94,20 @@ To run tests, run the following command:
 ```sh
   npx stylelint "**/*.{css,scss}"
 ```
+### Install
+
+To install the project, run this command :
+**npm install**
+
+### Usage
+
+To run the project on your computer, execute the following command :
+**npm start**
+
+### Run tests
+
+To run the project, execute the following command :
+**npm test**
 
 ### Deployment
 
