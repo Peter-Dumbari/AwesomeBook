@@ -11,6 +11,7 @@ const menuActive = (menu, active) => {
   }
   active.classList.add('active');
 };
+
 const generateTable = () => {
   contain.innerHTML = '';
   const table = document.createElement('table');
@@ -91,8 +92,6 @@ const generateAddForm = () => {
   inputX.setAttribute('type', 'file');
   inputX.setAttribute('name', 'cover');
   inputX.setAttribute('id', 'cover');
-  inputX.setAttribute('placeholder', 'Write the author');
-  inputX.setAttribute('value', 'Author 1');
   inputX.setAttribute('onchange', 'updloadImage()');
   lx.appendChild(inputX);
   // input submit
@@ -185,7 +184,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
   setInterval(generateCurrentDate, 1000);
   changeTitle();
   menuActive(menu, menu[0]);
-
   if (localStorage.getItem('books')) {
     books = JSON.parse(localStorage.getItem('books'));
   }
