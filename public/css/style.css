@@ -69,18 +69,6 @@ nav li {
   display: inline;
 }
 
-nav li a {
-  top: 15px;
-  font-size: 14pt;
-  color: var(--silver);
-  padding: 15.5px 20px;
-  font-weight: bold;
-}
-
-nav li a:hover {
-  color: var(--textColor);
-}
-
 .active {
   color: var(--textColor);
 }
