@@ -60,7 +60,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://menendezon.github.io/awesome-books/)
+- [Live Demo Link](https://peter-dumbari.github.io/AwesomeBook/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
