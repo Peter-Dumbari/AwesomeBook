@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <img src="./public/images/logo_menendezon.png" alt="logo" width="140"  height="auto" />
+  <img src="./public/images/default.png" alt="logo" width="140"  height="auto" />
   <br/>
 
 </div>
@@ -70,13 +70,14 @@ To get a local copy up and running, follow these steps.
 
 ### Setup
 
-This project doesn't need something to install, run this command to download the project : 
+This project doesn't need something to install, run this command to download the project :
 git clone git@github.com:MenendezON/awesome-books.git
 
 ### Prerequisites
 
 In order to run this project, you need :
-- Git to clone it (optional) 
+
+- Git to clone it (optional)
 - A browser to run it
 - Some skill in HTML/CSS and js
 - An IDE (optional)
@@ -87,6 +88,7 @@ To install the project, run this command :
 **npm install**
 
 ### Usage
+
 This project is only for creative commons, you can edit but don't forget to give credit back to the project developers.
 To run the project on your computer, execute the following command :
 **npm start**
